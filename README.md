@@ -22,18 +22,18 @@ Deployment: Hugging Face Spaces
 Interface: Flask
 
 ## Files in this repo
-Dockerfile → Setup for containerized deployment
-Hate_Speech_Detector_v2.ipynb → Main notebook with code & models
-app.py → Web app backend logic
-hatespeech_detection.pdf → Project report and explanation
-hs_gru.h5 → GRU deep learning model (GloVe)
-hs_logreg.joblib → 	Logistic Regression model
-hs_naivebayes.joblib → 	Naive Bayes model
-hs_svm.joblib → 	SVM model
-index.html → 	Web UI interface (frontend)
-requirements.txt → 	List of dependencies
-tfidf_vectorizer.joblib → Saved TF-IDF vectorizer
-tokenizerpkl_gru.pkl → 	Tokenizer for GRU model
+-Dockerfile → Setup for containerized deployment
+-Hate_Speech_Detector_v2.ipynb → Main notebook with code & models
+-app.py → Web app backend logic
+-hatespeech_detection.pdf → Project report and explanation
+-hs_gru.h5 → GRU deep learning model (GloVe)
+-hs_logreg.joblib → 	Logistic Regression model
+-hs_naivebayes.joblib → 	Naive Bayes model
+-hs_svm.joblib → 	SVM model
+-index.html → 	Web UI interface (frontend)
+-requirements.txt → 	List of dependencies
+-tfidf_vectorizer.joblib → Saved TF-IDF vectorizer
+-tokenizerpkl_gru.pkl → 	Tokenizer for GRU model
 
 ## How it works? 
 1) Input text (tweet/comment/statement) 
