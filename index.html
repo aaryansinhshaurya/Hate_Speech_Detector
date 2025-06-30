@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hate Speech Detection</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      color: #000;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    body.dark-mode {
+      background: #272626;
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .subtext {
+      font-size: 16px;
+      margin-bottom: 40px;
+      text-align: center;
+      max-width: 800px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .left-panel, .right-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    textarea {
+      width: 100%;
+      height: 140px;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .buttons button {
+      width: 49.5%;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      background: #4CAF50;
+      color: white;
+    }
+
+    .clear-btn {
+      background: #45a049;
+      color: white;
+    }
+
+    .share-btn {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      margin-top: auto;
+    }
+
+    .output {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-size: 16px;
+      min-height: 120px;
+      margin-bottom: 20px;
+    }
+
+    .dark-mode .output {
+      background: #1e1e1e;
+      color: #fff;
+    }
+
+    .mode-toggle {
+      margin-top: 60px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="page-title">Hate Speech Detection</h1>
+  <p class="subtext">
+    This tool uses 3 models (GloVe-based Deep Learning (GRU), RoBERTa (Transformer), ToxiGen-HateBERT (Transformer)) 
+    to classify hate speech using an ensemble method.
+  </p>
+
+  <div class="container">
+    <div class="left-panel">
+      <form id="hs-form">
+        <textarea id="text-input" placeholder="Enter text here..."></textarea>
+        <div class="buttons">
+          <button type="button" class="clear-btn" onclick="clearText()">Clear Text</button>
+          <button type="submit" class="submit-btn">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="right-panel">
+      <div class="output" id="output" style="display: none;"></div>
+      <button class="share-btn" onclick="shareText()">Share via Link</button>
+    </div>
+  </div>
+
+  <div class="mode-toggle">
+    <label><input type="checkbox" id="mode-toggle"> Dark Mode</label>
+  </div>
+
+  <script>
+    const outputDiv = document.getElementById("output");
+    const pageTitle = document.getElementById("page-title");
+
+    document.getElementById("hs-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const text = document.getElementById("text-input").value;
+
+      const response = await fetch("/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: text }),
+      });
+
+      const result = await response.json();
+      outputDiv.style.display = "block";
+      outputDiv.innerHTML = `
+        <strong>Model 1:</strong> ${result.gru_prob}<br>
+        <strong>Model 2:</strong> ${result.roberta_prob}<br>
+        <strong>Model 3:</strong> ${result.toxigen_prob}<br>
+        <strong>Prediction:</strong> ${result.prediction}
+      `;
+    });
+
+    function clearText() {
+      document.getElementById("text-input").value = "";
+      outputDiv.style.display = "none";
+      outputDiv.innerHTML = "";
+    }
+
+    function shareText() {
+      const text = document.getElementById("text-input").value;
+      const shareUrl = `${window.location.href}?text=${encodeURIComponent(text)}`;
+      navigator.clipboard.writeText(shareUrl);
+      alert("Sharable link copied to clipboard!");
+    }
+
+    document.getElementById("mode-toggle").addEventListener("change", function () {
+      document.body.classList.toggle("dark-mode", this.checked);
+      pageTitle.style.color = this.checked ? "white" : "black";
+    });
+
+    // On load: apply shared text if present
+    window.onload = function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const sharedText = urlParams.get("text");
+      if (sharedText) {
+        document.getElementById("text-input").value = decodeURIComponent(sharedText);
+      }
+    };
+  </script>
+</body>
+</html>
