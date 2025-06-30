@@ -12,28 +12,28 @@ Our goal is to built a system that can reliably detect hateful content in text.
 To do this, we used different types of models — from basic machine learning to advanced transformer models — and combined their strengths into one powerful system that works well even in real-world situations.
 
 ## Tech-Stack & Libraries
-Data Handling: pandas, numpy, joblib, pickle
-Text Cleaning: nltk, re, html, emoji
-Visualization: matplotlib, seaborn, wordcloud
-ML Models: sklearn (Logistic Regression, Naive Bayes, SVM)
-Deep Learning: TensorFlow, Keras (GRU + GloVe)
-Transformers: HuggingFace Transformers (RoBERTa, Toxic-BERT)
-Deployment: Hugging Face Spaces
-Interface: Flask
+- Data Handling: pandas, numpy, joblib, pickle
+- Text Cleaning: nltk, re, html, emoji
+- Visualization: matplotlib, seaborn, wordcloud
+- ML Models: sklearn (Logistic Regression, Naive Bayes, SVM)
+- Deep Learning: TensorFlow, Keras (GRU + GloVe)
+- Transformers: HuggingFace Transformers (RoBERTa, Toxic-BERT)
+- Deployment: Hugging Face Spaces
+- Interface: Flask
 
 ## Files in this repo
--Dockerfile → Setup for containerized deployment
--Hate_Speech_Detector_v2.ipynb → Main notebook with code & models
--app.py → Web app backend logic
--hatespeech_detection.pdf → Project report and explanation
--hs_gru.h5 → GRU deep learning model (GloVe)
--hs_logreg.joblib → 	Logistic Regression model
--hs_naivebayes.joblib → 	Naive Bayes model
--hs_svm.joblib → 	SVM model
--index.html → 	Web UI interface (frontend)
--requirements.txt → 	List of dependencies
--tfidf_vectorizer.joblib → Saved TF-IDF vectorizer
--tokenizerpkl_gru.pkl → 	Tokenizer for GRU model
+- Dockerfile → Setup for containerized deployment
+- Hate_Speech_Detector_v2.ipynb → Main notebook with code & models
+- app.py → Web app backend logic
+- hatespeech_detection.pdf → Project report and explanation
+- hs_gru.h5 → GRU deep learning model (GloVe)
+- hs_logreg.joblib → 	Logistic Regression model
+- hs_naivebayes.joblib → 	Naive Bayes model
+- hs_svm.joblib → 	SVM model
+- index.html → 	Web UI interface (frontend)
+- requirements.txt → 	List of dependencies
+- tfidf_vectorizer.joblib → Saved TF-IDF vectorizer
+- tokenizerpkl_gru.pkl → 	Tokenizer for GRU model
 
 ## How it works? 
 1) Input text (tweet/comment/statement) 
