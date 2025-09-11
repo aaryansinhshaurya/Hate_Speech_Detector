@@ -1,10 +1,8 @@
 # Hate Speech Detection
 A robust NLP project that uses Classical ML, Deep Learning (GRU + GloVe), and Transformers (RoBERTa, Toxic-BERT) to classify text(tweet/comment) as Hateful or Non-Hateful
 
-## Team
 - Aaryan Sinh Shaurya (SID: 202201075)  
-- Denil Antala (SID: 202201090)
-- Jami Sidhava (SID: 202201038)
+
 
 ## Goal
 Hate speech is a serious and growing issue on the internet.
