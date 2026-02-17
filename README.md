@@ -7,7 +7,7 @@ A robust NLP project that uses Classical ML, Deep Learning (GRU + GloVe), and Tr
 ## Goal
 Hate speech is a serious and growing issue on the internet.
 Our goal is to built a system that can reliably detect hateful content in text.
-To do this, we used different types of models — from basic machine learning to advanced transformer models — and combined their strengths into one powerful system that works well even in real-world situations.
+To do this, we used different types of models - from basic machine learning to advanced transformer models - and combined their strengths into one powerful system that works well even in real-world situations.
 
 ## Tech-Stack & Libraries
 - Data Handling: pandas, numpy, joblib, pickle
