@@ -1,4 +1,4 @@
-# Hate Speech Detection
+# Hate Speech Detector
 A robust NLP project that uses Classical ML, Deep Learning (GRU + GloVe), and Transformers (RoBERTa, Toxic-BERT) to classify text(tweet/comment) as Hateful or Non-Hateful
 
 - Aaryan Sinh Shaurya (SID: 202201075)  
